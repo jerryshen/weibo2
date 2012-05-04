@@ -11,11 +11,12 @@ module Weibo2
         unless @client.is_authorized?
           raise "I can't find a valid access_token. Forgot to get it or expired?"
         end
-        
-        response = @client.token.request(verb, path, opts, &block)
-        if response.error
-          raise Error.new(response)
+        begin
+          response = @client.token.request(verb, path, opts, &block)
+        rescue Exception => e
+          e.message
         end
+        # raise Error.new(response) if response.error
         response
       end
       

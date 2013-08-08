@@ -152,6 +152,11 @@ module Weibo2
       def users(opts={})
         get 'search/users.json', :params => opts
       end
+
+      # 话题搜索高级接口
+      def topics(opts={})
+        get 'search/topics.json', :params => opts
+      end
       
     end
   end
